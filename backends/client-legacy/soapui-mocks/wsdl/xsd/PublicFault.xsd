@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://oracle.com/MMA-SDM/commonschemas/public"
+            elementFormDefault="qualified"
+            xmlns:tns="http://oracle.com/MMA-SDM/commonschemas/public"
+            xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <xsd:element name="fault">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="code" type="xsd:string"/>
+                <xsd:element name="string" type="xsd:string"/>
+                <xsd:element name="detail" minOccurs="0" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
