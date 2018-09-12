@@ -105,8 +105,8 @@ public class ClientResource {
 	@ApiOperation(value = "Get all clients", notes = "This operation returns clients in the database")
 	public Paginated<ClientListing> searchClients(
 			@DefaultValue("id") @QueryParam("order_by") String orderBy,
-			@DefaultValue("1") @QueryParam(PaginationConstants.PAGE_QUERY_PARAM) int page,
-			@DefaultValue("10") @QueryParam(PaginationConstants.PER_PAGE_QUERY_PARAM) int perPage) {
+			@DefaultValue("1") @QueryParam(PaginationConstants.QUERY_PARAM_PAGE) int page,
+			@DefaultValue("10") @QueryParam(PaginationConstants.QUERY_PARAM_PER_PAGE) int perPage) {
 		// Call the enterprise service.
 		List<Client> clients = clientEnterpriseService.getAllClients(orderBy, page, perPage);
 		ClientListing clientListing = new ClientListing(clients);

@@ -9,9 +9,9 @@ package com.fivecents.backends.clientbrandnew.rest.pagination;
  * @param <T>
  */
 public interface Paginated<T> {
-    T currentPage();
-    int currentPageIndex();
-    int pageCount();
-    int perPageCount();
-    int totalCount();
+    T requestedPageEntity();
+    int requestedPageNumber();
+    int totalNumberOfPages();
+    int numberOfElementsPerPage();
+    int totalNumberOfElements();
 }

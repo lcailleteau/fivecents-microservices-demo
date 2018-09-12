@@ -5,80 +5,80 @@ import com.fivecents.backends.clientbrandnew.rest.beans.ClientListing;
 /**
  * Default implementation for a paginated JAX-RS entity.
  * The only remaining method to implement is the one that is
- * effectively returning the list of elements.
+ * effectively returning the list of entities.
  * 
  * @author Laurent CAILLETEAU
  *
  * @param <T> Type of the entity.
  */
 public class PaginatedImpl<T> implements Paginated<T> {
-	protected int currentPageIndex = 1;
-	protected int pageCount = 1;
-	protected int perPageCount = 1;
-	protected int totalCount = 10;
+	protected int requestedPageNumber = 1;
+	protected int totalNumberOfPages = 1;
+	protected int numberOfElementsPerPage = 1;
+	protected int totalNumberOfElements = 10;
 	protected T jaxrsResponseEntity;
 	
 	/**
 	 * Constructors.
 	 */
 	public PaginatedImpl(
-		int currentPageIndex,
-		int pageCount,
-		int perPageCount,
-		int totalCount,
+		int requestedPageNumber,
+		int totalNumberOfPages,
+		int numberOfElementsPerPage,
+		int totalNumberOfElements,
 		T jaxrsResponseEntity) {
-		this.currentPageIndex = currentPageIndex;
-		this.pageCount = pageCount;
-		this.perPageCount = perPageCount;
-		this.totalCount = totalCount;
+		this.requestedPageNumber = requestedPageNumber;
+		this.totalNumberOfPages = totalNumberOfPages;
+		this.numberOfElementsPerPage = numberOfElementsPerPage;
+		this.totalNumberOfElements = totalNumberOfElements;
 		this.jaxrsResponseEntity = jaxrsResponseEntity;
 	}
 	public PaginatedImpl(
-		int currentPageIndex,
-		int perPageCount,
-		int totalCount,
+		int requestedPageNumber,
+		int numberOfElementsPerPage,
+		int totalNumberOfElements,
 		T jaxrsResponseEntity) {
-		this.currentPageIndex = currentPageIndex;
-		this.perPageCount = perPageCount;
-		this.totalCount = totalCount;
+		this.requestedPageNumber = requestedPageNumber;
+		this.numberOfElementsPerPage = numberOfElementsPerPage;
+		this.totalNumberOfElements = totalNumberOfElements;
 		this.jaxrsResponseEntity = jaxrsResponseEntity;
 		
 		// Let's figure out the page count.
-		this.pageCount = (int) Math.ceil((double) totalCount / perPageCount);
+		this.totalNumberOfPages = (int) Math.ceil((double) totalNumberOfElements / numberOfElementsPerPage);
 	}
 	
 	/**
 	 * Current page index.
 	 */
-	public int currentPageIndex() {
-		return currentPageIndex; 
+	public int requestedPageNumber() {
+		return requestedPageNumber; 
 	}
 	
 	/**
 	 * Page count.
 	 */
-	public int pageCount() {
-		return pageCount; 
+	public int totalNumberOfPages() {
+		return totalNumberOfPages; 
 	}
 	
 	/**
 	 * Per-page count.
 	 */
-	public int perPageCount() {
-		return perPageCount; 
+	public int numberOfElementsPerPage() {
+		return numberOfElementsPerPage; 
 	}
 
 	/**
 	 * Total count.
 	 */
-	public int totalCount() {
-		return totalCount; 
+	public int totalNumberOfElements() {
+		return totalNumberOfElements; 
 	}
 	
 	/**
 	 * Returns the entity.
 	 */
-	public T currentPage() {
+	public T requestedPageEntity() {
 		return jaxrsResponseEntity;
 	}
 }
