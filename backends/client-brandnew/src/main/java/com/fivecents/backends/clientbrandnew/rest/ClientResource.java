@@ -45,7 +45,7 @@ import javax.ws.rs.QueryParam;
  *   curl http://localhost:8080/api/v1/client/1 -H "Accept:application/xml"
  *   curl -X POST http://localhost:8080/api/v1/client -i -H "Content-Type: text/json" --data "{\"firstname\": \"Isabelle\", \"lastname\": \"PIVOT\", \"legacy-id\": 1009}"
  *      We have as a result the Location header, for instance : http://localhost: 8080/api/v1/client/5
- *   
+ *   curl "http://localhost:8080/api/v1/client?page=2&per_page=3" -H "Accept:application/json" -i
  * 
  * - Explain that by default, we give JSON, because first entry in @Produces
  * - Java EE 7 supports JSON binding automatically, and uses Xml annotation,
