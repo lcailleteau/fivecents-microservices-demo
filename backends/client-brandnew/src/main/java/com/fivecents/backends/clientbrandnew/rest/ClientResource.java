@@ -44,7 +44,7 @@ import javax.ws.rs.QueryParam;
  *   curl http://localhost:8080/api/v1/client/1 -H "Accept:application/json"
  *   curl http://localhost:8080/api/v1/client/1 -H "Accept:application/xml"
  *   curl -X POST http://localhost:8080/api/v1/client -i -H "Content-Type: text/json" --data "{\"firstname\": \"Isabelle\", \"lastname\": \"PIVOT\", \"legacy-id\": 1009}"
- *      We have as a result the Location header, for instance : http://localhost:8080/api/v1/client/5
+ *      We have as a result the Location header, for instance : http://localhost: 8080/api/v1/client/5
  *   
  * 
  * - Explain that by default, we give JSON, because first entry in @Produces
@@ -102,7 +102,7 @@ public class ClientResource {
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Path("/")
-	@ApiOperation(value = "Get all clients", notes = "Tnhis operation returns clients in the database")
+	@ApiOperation(value = "Get all clients", notes = "This operation returns clients in the database")
 	public Paginated<ClientListing> searchClients(
 			@DefaultValue("id") @QueryParam("order_by") String orderBy,
 			@DefaultValue("1") @QueryParam(PaginationConstants.PAGE_QUERY_PARAM) int page,
