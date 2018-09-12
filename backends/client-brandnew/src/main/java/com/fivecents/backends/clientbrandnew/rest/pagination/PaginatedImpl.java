@@ -1,7 +1,5 @@
 package com.fivecents.backends.clientbrandnew.rest.pagination;
 
-import com.fivecents.backends.clientbrandnew.rest.beans.ClientListing;
-
 /**
  * Default implementation for a paginated JAX-RS entity.
  * The only remaining method to implement is the one that is

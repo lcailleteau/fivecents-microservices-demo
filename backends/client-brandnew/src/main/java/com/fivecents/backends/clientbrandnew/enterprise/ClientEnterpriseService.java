@@ -61,8 +61,16 @@ public class ClientEnterpriseService {
 			});
 	
 		// Now we can extract the required clients.
-		int startingIndex = Math.max(0, (page-1)*perPage);
-		int endingIndex = Math.min(clients.size()-1, page*perPage);
+		int startingIndex = (page-1)*perPage;
+		if (startingIndex < 0) { startingIndex = 0; }
+		if (startingIndex > clients.size()-1) { startingIndex = clients.size()-1; }
+		
+		int endingIndex = Math.min(clients.size(), page*perPage);
+		if (endingIndex < 0) { endingIndex = 0; }
+		if (endingIndex > clients.size()) { endingIndex = clients.size(); }
+		
+		if (startingIndex > endingIndex) { endingIndex = startingIndex; }
+		
 		return clients.subList(startingIndex, endingIndex);
 	}
 	
