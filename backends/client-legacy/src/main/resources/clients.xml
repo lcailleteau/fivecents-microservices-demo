@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clients>
+	<client>
+		<id>1001</id>
+		<address>
+			<street>2 rue des roses</street>
+			<city>Paris</city>
+			<zip>75000</zip>
+			<country>France</country>
+		</address>
+	</client>
+	<client>
+		<id>1002</id>
+		<address>
+			<street>21 avenue de Gaulle</street>
+			<city>Paris</city>
+			<zip>75000</zip>
+			<country>France</country>
+		</address>
+	</client>
+	<client>
+		<id>1003</id>
+		<address>
+			<street>13 rue Leo Ferre</street>
+			<city>La Roche sur Yon</city>
+			<zip>85000</zip>
+			<country>France</country>
+		</address>
+	</client>
+	<client>
+		<id>1004</id>
+		<address>
+			<street>4 impasse Montaigne</street>
+			<city>Le Mans</city>
+			<zip>72000</zip>
+			<country>France</country>
+		</address>
+	</client>
+	<client>
+		<id>1005</id>
+		<address>
+			<street>34 allee des Tilleuls</street>
+			<city>Le Mans</city>
+			<zip>72000</zip>
+			<country>France</country>
+		</address>
+	</client>
+	<client>
+		<id>1006</id>
+		<address>
+			<street>6 rue des martyrs</street>
+			<city>Nantes</city>
+			<zip>44000</zip>
+			<country>France</country>
+		</address>
+	</client>
+	<client>
+		<id>1007</id>
+		<address>
+			<street>9 rue Vauban</street>
+			<city>Nantes</city>
+			<zip>44000</zip>
+			<country>France</country>
+		</address>
+	</client>
+	<client>
+		<id>1008</id>
+		<address>
+			<street>19 rue Roger Salengro</street>
+			<city>Le Mans</city>
+			<zip>72000</zip>
+			<country>France</country>
+		</address>
+	</client>
+</clients>

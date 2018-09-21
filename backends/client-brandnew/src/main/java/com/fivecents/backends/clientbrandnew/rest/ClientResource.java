@@ -8,9 +8,9 @@ import javax.ws.rs.core.Response;
 import com.fivecents.backends.clientbrandnew.enterprise.ClientEnterpriseService;
 import com.fivecents.backends.clientbrandnew.enterprise.beans.Client;
 import com.fivecents.backends.clientbrandnew.rest.beans.ClientListing;
-import com.fivecents.backends.clientbrandnew.rest.pagination.Paginated;
-import com.fivecents.backends.clientbrandnew.rest.pagination.PaginatedImpl;
-import com.fivecents.backends.clientbrandnew.rest.pagination.PaginationConstants;
+import com.fivecents.rest.pagination.Paginated;
+import com.fivecents.rest.pagination.PaginatedImpl;
+import com.fivecents.rest.pagination.PaginationConstants;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.fivecents</groupId>
+	<artifactId>fivecents</artifactId>
+	<name>Fivencents demo</name>
+	<packaging>pom</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<properties>
+		<!-- Products libraries -->
+		<thorntail.version>2.2.0.Final</thorntail.version>
+		<json-api.version>1.0</json-api.version>
+		<!-- <undertow.version>1.4.18.Final</undertow.version> -->
+		<javaee-api.version>7.0</javaee-api.version>
+		
+		<!-- Test libraries -->
+		<junit.version>4.8.1</junit.version>
+		<cdi-unit.version>3.1.0</cdi-unit.version>   <!--  <cdi-unit.version>4.1.0</cdi-unit.version> -->
+		<weld.version>2.2.0.Final</weld.version>     <!-- <weld.version>3.0.5.Final</weld.version>  -->
+
+		<!-- Maven general properties -->
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<failOnMissingWebXml>false</failOnMissingWebXml>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<modules>
+		<module>framework</module>
+		<module>backends</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Thorntail BOM -->
+			<dependency>
+				<groupId>io.thorntail</groupId>
+				<artifactId>bom-all</artifactId>
+				<version>${thorntail.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+
+	 		<!-- The next 2 dependencies are added here because of this bug : https://issues.jboss.org/browse/THORN-460
+	 			 There is this exception when we run otherwise : mvn thorntail:run :
+	 				java.lang.ClassNotFoundException: io.undertow.server.HttpHandler 
+	 		     So let's add these dependencies while the correction has not been done on the undertow bom.
+	 		
+	 		<dependency>
+				<groupId>io.undertow</groupId>
+				<artifactId>undertow-core</artifactId>
+				<version>${undertow.version}</version>
+			</dependency>
+			 <dependency>
+				<groupId>io.undertow</groupId>
+				<artifactId>undertow-servlet</artifactId>
+				<version>${undertow.version}</version>
+			</dependency>
+-->
+
+
+	 		<!-- This one for the lack of javax.json.* in jaxrs fraction. -->
+			<dependency>
+				<groupId>javax.json</groupId>
+				<artifactId>javax.json-api</artifactId>
+				<version>${json-api.version}</version> 
+			</dependency>
+
+			<!-- Java EE API -->
+			<dependency>
+				<groupId>javax</groupId>
+			    <artifactId>javaee-api</artifactId>
+			    <version>${javaee-api.version}</version>
+			    <scope>provided</scope>
+			</dependency>
+
+			<!-- Test dependencies. -->
+			<!-- Cf. http://bryncooke.github.io/cdi-unit/  -->
+			<dependency>
+	  			<groupId>org.jglue.cdi-unit</groupId>
+	  			<artifactId>cdi-unit</artifactId>
+	  			<version>${cdi-unit.version}</version>
+	  			<scope>test</scope>
+			</dependency>
+			<dependency>
+	  			<groupId>org.jboss.weld.se</groupId>
+	  			<artifactId>weld-se-core</artifactId>
+	  			<version>${weld.version}</version>
+	  			<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

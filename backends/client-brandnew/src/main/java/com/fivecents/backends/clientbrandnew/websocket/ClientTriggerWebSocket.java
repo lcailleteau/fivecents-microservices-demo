@@ -20,8 +20,9 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import com.fivecents.backends.clientbrandnew.enterprise.events.EnterpriseEvent;
-import com.fivecents.backends.clientbrandnew.enterprise.events.EnterpriseEventNotifier;
+import com.fivecents.websocket.JsonEncoder;
+import com.fivecents.enterprise.events.EnterpriseEvent;
+import com.fivecents.enterprise.events.EnterpriseEventNotifier;
 
 /**
  * This simple WebSocket send all calls to the Client service to registered 

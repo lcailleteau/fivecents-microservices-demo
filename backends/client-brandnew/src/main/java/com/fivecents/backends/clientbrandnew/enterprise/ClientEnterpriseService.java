@@ -1,5 +1,7 @@
 package com.fivecents.backends.clientbrandnew.enterprise;
 
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,11 +11,14 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.interceptor.Interceptors;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 
 import com.fivecents.backends.clientbrandnew.enterprise.beans.Client;
-import com.fivecents.backends.clientbrandnew.enterprise.events.EnterpriseEvent;
-import com.fivecents.backends.clientbrandnew.enterprise.events.EnterpriseEventNotifier;
-import com.fivecents.backends.clientbrandnew.enterprise.loader.ClientStoreLoader;
+import com.fivecents.backends.clientbrandnew.loader.ClientStore;
+import com.fivecents.enterprise.loader.GenericXmlStoreLoader;
+import com.fivecents.enterprise.EnterpriseInterceptor;
 
 /**
  * This service bean is the enterprise tier to access to clients in the system.
@@ -27,14 +32,20 @@ public class ClientEnterpriseService {
 	private List<Client> clients;
 	
 	@Inject
-	private ClientStoreLoader clientResourceLoader;
-	
-	@Inject
-	private EnterpriseEventNotifier enterpriseEventNotifier;
+	private GenericXmlStoreLoader storeLoader;
 	
 	@PostConstruct
 	private void init() {
-		clients = clientResourceLoader.loadClientsFromResource("clients.xml");
+		// Let's initialize our clients from xml resource.
+		ClientStore clientStore = storeLoader.loadFromResource("clients.xml", ClientStore.class);
+		clients = clientStore.getClients();
+		
+		// The clients inside the XML file have no id, we can set the id now.
+		int idIteration = 0;
+		for (Client client : clients) {
+			client.setId(idIteration);
+			idIteration++;
+		}
 	}
 	
 	/**
