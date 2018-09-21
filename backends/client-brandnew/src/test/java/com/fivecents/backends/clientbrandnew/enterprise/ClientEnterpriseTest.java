@@ -4,6 +4,8 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.validation.constraints.AssertTrue;
 
@@ -34,7 +36,8 @@ public class ClientEnterpriseTest {
 	 */
 	@Test
 	public void testClientServices() throws Exception {
-		List<Client> clients = clientEnterprise.getAllClients();
+		Map<String, Object> clientsMap = clientEnterprise.getAllClients("lastname", 2, 3);
+		List<Client> clients = (List<Client>) clientsMap.get("clients");
 		int clientsSize = clients.size();
 		
 		// Let's check that clients are loaded.

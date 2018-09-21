@@ -22,6 +22,7 @@ import io.swagger.annotations.SwaggerDefinition;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
@@ -104,14 +105,15 @@ public class ClientResource {
 			@DefaultValue("1") @QueryParam(PaginationConstants.QUERY_PARAM_PAGE) int page,
 			@DefaultValue("10") @QueryParam(PaginationConstants.QUERY_PARAM_PER_PAGE) int perPage) {
 		// Call the enterprise service.
-		List<Client> clients = clientEnterpriseService.getAllClients(orderBy, page, perPage);
+		Map<String, Object> allClientsResult = clientEnterpriseService.getAllClients(orderBy, page, perPage); 
+		List<Client> clients = (List<Client>) allClientsResult.get("clients");
 		ClientListing clientListing = new ClientListing(clients);
 		
 		// We need to send back headers to help our callers to navigate easily into the clients.
 		// This will be done outside this scope, with the help of the JAX-RS 2.0 container
 		// response filter. All we need to do is sending back an entity inheriting from Pagination
 		// interface.
-		int totalCount = clientEnterpriseService.getAllClients().size();
+		int totalCount = (int) allClientsResult.get("total");
 		Paginated<ClientListing> paginatedClientListing = 
 				new PaginatedImpl<ClientListing>(
 						page,

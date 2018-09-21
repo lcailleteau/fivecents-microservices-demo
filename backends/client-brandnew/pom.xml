@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+
+To start the project in debug mode with classic java open port :
+java -Xdebug -agentlib:jdwp=transport=dt_socket,address=8784,server=y,suspend=n -jar target/client-brand-new-thorntail.jar
+
+ -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -95,7 +101,6 @@
  				java.lang.ClassNotFoundException: io.undertow.server.HttpHandler 
  		So let's add these dependencies while the correction has not been done on the undertow bom.
  		-->
-
  		<dependency>
 			<groupId>io.undertow</groupId>
 			<artifactId>undertow-core</artifactId>
@@ -107,6 +112,14 @@
 			<version>1.4.18.Final</version>
 		</dependency>
  
+ 		<!-- This one for the lack of javax.json.* in jaxrs fraction. -->
+		<dependency>
+		    <groupId>javax.json</groupId>
+		    <artifactId>javax.json-api</artifactId>
+		    <version>1.0</version> 
+		</dependency>
+	
+
  
 		<!-- Test dependencies. -->
 		<!-- Cf. http://bryncooke.github.io/cdi-unit/  -->

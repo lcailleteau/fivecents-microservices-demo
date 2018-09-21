@@ -1,13 +1,18 @@
 package com.fivecents.backends.clientbrandnew.enterprise;
 
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.interceptor.Interceptors;
 
 import com.fivecents.backends.clientbrandnew.enterprise.beans.Client;
+import com.fivecents.backends.clientbrandnew.enterprise.events.EnterpriseEvent;
+import com.fivecents.backends.clientbrandnew.enterprise.events.EnterpriseEventNotifier;
 import com.fivecents.backends.clientbrandnew.enterprise.loader.ClientStoreLoader;
 
 /**
@@ -15,6 +20,7 @@ import com.fivecents.backends.clientbrandnew.enterprise.loader.ClientStoreLoader
  * 
  * @author Laurent CAILLETEAU
  */
+@Interceptors({	EnterpriseInterceptor.class })
 @Named
 @ApplicationScoped
 public class ClientEnterpriseService {
@@ -23,24 +29,21 @@ public class ClientEnterpriseService {
 	@Inject
 	private ClientStoreLoader clientResourceLoader;
 	
+	@Inject
+	private EnterpriseEventNotifier enterpriseEventNotifier;
+	
 	@PostConstruct
 	private void init() {
 		clients = clientResourceLoader.loadClientsFromResource("clients.xml");
 	}
 	
 	/**
-	 * Return all clients.
-	 * @return
-	 */
-	public List<Client> getAllClients() {
-		return clients;
-	}
-	
-	/**
 	 * Return all clients by an order, and with a pagination.
 	 * @return
 	 */
-	public List<Client> getAllClients(String orderBy, int page, int perPage) {
+	public Map<String, Object> getAllClients(String orderBy, int page, int perPage) {
+		Map<String, Object> result = new HashMap<>();
+		
 		// Let's order the list, if required.
 		if (orderBy == null) {
 			orderBy = "id";
@@ -71,7 +74,10 @@ public class ClientEnterpriseService {
 		
 		if (startingIndex > endingIndex) { endingIndex = startingIndex; }
 		
-		return clients.subList(startingIndex, endingIndex);
+		// Returns result.
+		result.put("clients", clients.subList(startingIndex, endingIndex));
+		result.put("total", clients.size());
+		return result;
 	}
 	
 	/**
@@ -80,12 +86,13 @@ public class ClientEnterpriseService {
 	 * @return
 	 */
 	public Client searchForClient(int id) {
+		// Search client.
 		Client searchedClient =
 			clients
 				.stream()
 				.filter(client -> client.getId() == id)
 				.findAny()
-				.orElse(null); 
+				.orElse(null);		
 		return searchedClient;
 	}
 	
@@ -102,7 +109,7 @@ public class ClientEnterpriseService {
 	 * Delete a client.
 	 */
 	public boolean removeClient(int clientId) {
-		return clients.removeIf( c -> c.getId() == clientId);
+		return clients.removeIf(c -> c.getId() == clientId);
 	}
 	
 	/**
