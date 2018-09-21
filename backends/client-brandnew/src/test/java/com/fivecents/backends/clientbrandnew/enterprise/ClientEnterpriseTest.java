@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.validation.constraints.AssertTrue;
 
 import org.jglue.cdiunit.AdditionalClasses;
 import org.jglue.cdiunit.CdiRunner;
@@ -36,7 +35,7 @@ public class ClientEnterpriseTest {
 	 */
 	@Test
 	public void testClientServices() throws Exception {
-		Map<String, Object> clientsMap = clientEnterprise.getAllClients("lastname", 2, 3);
+		Map<String, Object> clientsMap = clientEnterprise.getAllClients("id", 1, 10);
 		List<Client> clients = (List<Client>) clientsMap.get("clients");
 		int clientsSize = clients.size();
 		
@@ -56,13 +55,25 @@ public class ClientEnterpriseTest {
 		Client newClient = new Client();
 		newClient.setFirstName("Martin");
 		newClient.setLastName("PICHON");
-		Client newUpdatedClient = clientEnterprise.createClient(newClient);		
+		Client newUpdatedClient = clientEnterprise.createClient(newClient);
+		
+		// To avoid ConcurrentModificationException on the client list operations,
+		// we need to get it back.
+		clientsMap = clientEnterprise.getAllClients("id", 1, 10);
+		clients = (List<Client>) clientsMap.get("clients");
+		
 		assertTrue(clients.size() == clientsSize + 1);
 		assertTrue(clients.size() == newUpdatedClient.getId() + 1);
 		
 		// Now, let's remove a given client.
 		boolean clientRemoved = clientEnterprise.removeClient(1);
 		assertTrue(clientRemoved);
+		
+		// To avoid ConcurrentModificationException on the client list operations,
+		// we need to get it back.
+		clientsMap = clientEnterprise.getAllClients("id", 1, 10);
+		clients = (List<Client>) clientsMap.get("clients");
+		
 		assertTrue(clients.size() == clientsSize);
 		
 		// Finally, we can try to update a client.
