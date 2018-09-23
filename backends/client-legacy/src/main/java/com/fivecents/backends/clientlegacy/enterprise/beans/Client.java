@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * 
  * @author Laurent CAILLETEAU
  */
-@XmlRootElement(name="client", namespace="com.fivecents.clients")
+@XmlRootElement(name="client")
 public class Client {
 	private int id;
 	private Address address;

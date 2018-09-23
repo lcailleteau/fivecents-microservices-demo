@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="2495237d-402d-43d0-ad60-7ac70c16c6f1" activeEnvironment="Default" name="client-legacy" resourceRoot="" soapui-version="5.4.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="01238404-27e3-4f17-9ab7-4f30f094d97f" wsaVersion="NONE" name="clientServiceSoapBinding" type="wsdl" bindingName="{http://clientlegacy.fivecents.com/}clientServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/clientService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/clientService?wsdl"><con:part><con:url>http://localhost:8080/clientService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="clientService" targetNamespace="http://clientlegacy.fivecents.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://clientlegacy.fivecents.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://clientlegacy.fivecents.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:leg="http://clientlegacy.fivecents.com/">
+      <xs:element name="Address" type="tns:address"/>
+      <xs:element name="client" type="tns:client"/>
+      <xs:element name="create" type="tns:create"/>
+      <xs:element name="createResponse" type="tns:createResponse"/>
+      <xs:element name="findAllClients" type="tns:findAllClients"/>
+      <xs:element name="findAllClientsResponse" type="tns:findAllClientsResponse"/>
+      <xs:element name="remove" type="tns:remove"/>
+      <xs:element name="removeResponse" type="tns:removeResponse"/>
+      <xs:element name="search" type="tns:search"/>
+      <xs:element name="searchResponse" type="tns:searchResponse"/>
+      <xs:element name="update" type="tns:update"/>
+      <xs:element name="updateResponse" type="tns:updateResponse"/>
+      <xs:complexType name="create">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="tns:client"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="client">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="address" type="tns:address"/>
+          <xs:element name="id" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="address">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="city" type="xs:string"/>
+          <xs:element minOccurs="0" name="country" type="xs:string"/>
+          <xs:element minOccurs="0" name="street" type="xs:string"/>
+          <xs:element minOccurs="0" name="zip" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="createResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="tns:client"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="update">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" ref="tns:client"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="updateResponse">
+        <xs:sequence>
+          <xs:element name="updateSucceeded" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="search">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="searchResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="tns:client"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="findAllClients">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="findAllClientsResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:client"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="remove">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="removeResponse">
+        <xs:sequence>
+          <xs:element name="removalSucceeded" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="create">
+    <wsdl:part element="tns:create" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createResponse">
+    <wsdl:part element="tns:createResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="update">
+    <wsdl:part element="tns:update" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllClientsResponse">
+    <wsdl:part element="tns:findAllClientsResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeResponse">
+    <wsdl:part element="tns:removeResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateResponse">
+    <wsdl:part element="tns:updateResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllClients">
+    <wsdl:part element="tns:findAllClients" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="remove">
+    <wsdl:part element="tns:remove" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="search">
+    <wsdl:part element="tns:search" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="searchResponse">
+    <wsdl:part element="tns:searchResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ClientEndpoint">
+    <wsdl:operation name="create">
+      <wsdl:input message="tns:create" name="create"></wsdl:input>
+      <wsdl:output message="tns:createResponse" name="createResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <wsdl:input message="tns:update" name="update"></wsdl:input>
+      <wsdl:output message="tns:updateResponse" name="updateResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="search">
+      <wsdl:input message="tns:search" name="search"></wsdl:input>
+      <wsdl:output message="tns:searchResponse" name="searchResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findAllClients">
+      <wsdl:input message="tns:findAllClients" name="findAllClients"></wsdl:input>
+      <wsdl:output message="tns:findAllClientsResponse" name="findAllClientsResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="remove">
+      <wsdl:input message="tns:remove" name="remove"></wsdl:input>
+      <wsdl:output message="tns:removeResponse" name="removeResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="clientServiceSoapBinding" type="tns:ClientEndpoint">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="create">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="create">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="update">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="search">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="search">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="searchResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findAllClients">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="findAllClients">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findAllClientsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="remove">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="remove">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="clientService">
+    <wsdl:port binding="tns:clientServiceSoapBinding" name="clientPort">
+      <soap:address location="http://cailleteau-netbook:8080/clientService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/clientService</con:endpoint></con:endpoints><con:operation id="45119da6-4569-4d98-97ed-701e2ce591c1" isOneWay="false" action="" name="create" bindingOperationName="create" type="Request-Response" outputName="createResponse" inputName="create" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="538d28c7-3949-423b-8d49-3bf07ca06e43" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/clientService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cli="http://clientlegacy.fivecents.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cli:create>
+         <cli:client>
+            <cli:address>
+               <cli:city>Lyon</cli:city>
+               <cli:country>France</cli:country>
+               <cli:street>5 rue Blaise Pascal</cli:street>
+               <cli:zip>69000</cli:zip>
+            </cli:address>
+            <cli:id>1015</cli:id>
+         </cli:client>
+      </cli:create>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://clientlegacy.fivecents.com/ClientEndpoint/create"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="c428cad0-8eaf-40a9-818e-7da89c6cc599" isOneWay="false" action="" name="findAllClients" bindingOperationName="findAllClients" type="Request-Response" outputName="findAllClientsResponse" inputName="findAllClients" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d18e952f-97ef-4c86-a3cf-8cabf9d32f76" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/clientService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cli="http://clientlegacy.fivecents.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cli:findAllClients/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://clientlegacy.fivecents.com/ClientEndpoint/findAllClients"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="e13b06f0-3475-435a-8cdc-438bf79a0287" isOneWay="false" action="" name="remove" bindingOperationName="remove" type="Request-Response" outputName="removeResponse" inputName="remove" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="887a671f-e590-47b0-b498-5cf99ad2cf2c" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/clientService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cli="http://clientlegacy.fivecents.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cli:remove>
+         <cli:id>1001</cli:id>
+      </cli:remove>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://clientlegacy.fivecents.com/ClientEndpoint/remove"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="ee4466c9-a16e-4190-9877-b0b228e2994a" isOneWay="false" action="" name="search" bindingOperationName="search" type="Request-Response" outputName="searchResponse" inputName="search" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="18b5b14e-a1bc-4b40-8c2b-66709238469b" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/clientService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cli="http://clientlegacy.fivecents.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cli:search>
+         <cli:id>1003</cli:id>
+      </cli:search>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://clientlegacy.fivecents.com/ClientEndpoint/search"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="40aeb13a-4f56-4106-a7c7-edbaed3c88f3" isOneWay="false" action="" name="update" bindingOperationName="update" type="Request-Response" outputName="updateResponse" inputName="update" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="fd5ab27f-9fd9-44d5-a80b-119e3dacf3f3" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/clientService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cli="http://clientlegacy.fivecents.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cli:update>
+         <cli:client>
+            <cli:address>
+               <cli:city>La Roche sur Yon</cli:city>
+               <cli:country>France</cli:country>
+               <cli:street>9 impasse des magniolias</cli:street>
+               <cli:zip>85000</cli:zip>
+            </cli:address>
+            <cli:id>1003</cli:id>
+         </cli:client>
+      </cli:update>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://clientlegacy.fivecents.com/ClientEndpoint/update"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

@@ -1,6 +1,5 @@
 package com.fivecents.backends.clientlegacy.enterprise.beans;
 
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -8,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * 
  * @author Laurent CAILLETEAU
  */
-@XmlRootElement(name="Address", namespace="com.fivecents.clients")
+@XmlRootElement(name="Address")
 public class Address {
 	private String street;
 	private String city;

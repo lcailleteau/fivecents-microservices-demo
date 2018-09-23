@@ -73,9 +73,8 @@ public class ClientEnterpriseService {
 	/**
 	 * Update a client.
 	 */
-	public boolean updateClient(int clientId, Client client) {
-		client.setId(clientId);
-		Client registeredClient = searchForClient(clientId);
+	public boolean updateClient(Client client) {
+		Client registeredClient = searchForClient(client.getId());
 		if (registeredClient == null) {
 			return false;
 		}

@@ -19,7 +19,7 @@ java -Xdebug -agentlib:jdwp=transport=dt_socket,address=8784,server=y,suspend=n 
 	<packaging>war</packaging>
 
 	<build>
-		<finalName>client-brand-new</finalName>
+		<finalName>client-legacy</finalName>
 		<plugins>
 			<plugin>
 				<groupId>io.thorntail</groupId>
