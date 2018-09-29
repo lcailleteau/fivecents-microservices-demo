@@ -14,11 +14,9 @@ import javax.inject.Named;
  * 
  * @author Laurent CAILLETEAU
  */
-@SuppressWarnings("restriction")
 @Named
 @ApplicationScoped
 public class EnterpriseEventNotifier {
-	// private Set<EnterpriseEventsListener> listeners;
 	private Set<Consumer<EnterpriseEvent>> eventConsumers;
 	
 	@PostConstruct

@@ -1,4 +1,4 @@
-/*
+/**
  * JAXB annotations for the package. We prefer qualified XML form elements, 
  * but generated JAXB elements set it to unqualified. We change that here.
  *

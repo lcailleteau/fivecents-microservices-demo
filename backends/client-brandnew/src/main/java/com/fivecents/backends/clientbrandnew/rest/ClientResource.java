@@ -78,7 +78,7 @@ import javax.ws.rs.QueryParam;
 @Api(value = "/client", description = "Client brand new REST service")
 @SwaggerDefinition (
 	info = @Info (
-        title = "Example Service",
+        title = "Client brand new Service",
         description = "A simple example here",
         version = "1.0.0",
         contact = @Contact (
@@ -127,6 +127,7 @@ public class ClientResource {
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Path("{clientId}")
+	@ApiOperation(value = "Get one client", notes = "This operation returns one clients by id")
 	@ApiResponses(value = { 
 		@ApiResponse(code = 400, message = "Invalid ID supplied"),
 		@ApiResponse(code = 404, message = "Client not found") })
@@ -146,6 +147,7 @@ public class ClientResource {
 	
 	@POST
 	@Path("/")
+	@ApiOperation(value = "Creates a new client")
 	@ApiResponses(value = { 
 			@ApiResponse(code = 201, message = "Client created") })
 	public Response createClient(Client client) {
@@ -164,6 +166,7 @@ public class ClientResource {
 	
 	@DELETE
 	@Path("{clientId}")
+	@ApiOperation(value = "Removes an existing client")
 	@ApiResponses(value = {
 		@ApiResponse(code = 204, message = "Client successfully deleted"),
 		@ApiResponse(code = 400, message = "Invalid ID supplied"),
@@ -184,6 +187,7 @@ public class ClientResource {
 	
 	@PUT
 	@Path("{clientId}")
+	@ApiOperation(value = "Updates an existing client")
 	@ApiResponses(value = {
 		@ApiResponse(code = 204, message = "Client successfully updated"),
 		@ApiResponse(code = 400, message = "Invalid ID supplied"),

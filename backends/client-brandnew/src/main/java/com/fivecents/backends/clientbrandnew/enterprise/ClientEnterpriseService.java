@@ -1,7 +1,5 @@
 package com.fivecents.backends.clientbrandnew.enterprise;
 
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,9 +9,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.interceptor.Interceptors;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 
 import com.fivecents.backends.clientbrandnew.enterprise.beans.Client;
 import com.fivecents.backends.clientbrandnew.loader.ClientStore;
